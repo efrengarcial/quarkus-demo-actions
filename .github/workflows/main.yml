@@ -6,7 +6,7 @@ jobs:
     name: Build native Quarkus app
     steps:
       - name: Checkout the code
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       - name: Build native executable
         uses: maxday/quarkus-native-build-docker-action@1
         with:
@@ -45,7 +45,7 @@ jobs:
         run: |
           gcloud auth configure-docker --quiet
           docker push gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
-      - name: Deploy 
+      - name: Deploy
         run: |
           gcloud components install beta --quiet
           gcloud beta run deploy ${{ secrets.GCP_APP_NAME }} \
